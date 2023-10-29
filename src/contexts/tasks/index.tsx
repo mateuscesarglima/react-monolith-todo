@@ -10,7 +10,7 @@ type TaskProviderType = {
 type TaskContextType = {
   tasks: TaskType[];
   createTask: (task: InputFormType) => void;
-  updateTask: (task: TaskType) => void;
+  updateTask: (id: string) => void;
   deleteTask: (id: string) => void;
 }
 
@@ -20,12 +20,7 @@ export const TaskContext = createContext({} as TaskContextType)
 export const TaskProvider = ({ children }: TaskProviderType) => {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [tasks, setTasks] = useState<TaskType[]>([{
-    id: crypto.randomUUID(),
-    title: 'Criar um novo projeto',
-    status: 'done'
-  },
-  ]);
+  const [tasks, setTasks] = useState<TaskType[]>([]);
 
   const createTask = (task: InputFormType) => {
     const taskAlreadyExists = tasks.find(obj => obj.title === task.title);
@@ -39,9 +34,23 @@ export const TaskProvider = ({ children }: TaskProviderType) => {
     }])
   }
 
-  const updateTask = () => { }
+  const updateTask = (id: string) => {
+    const newTasks = tasks.map(task => {
+      if (task.id === id) {
+        return {
+          ...task,
+          status: task.status === 'open' ? 'done' : 'open' as TaskType['status']
+        }
+      }
+      return task;
+    }).filter(task => task !== undefined)
+    setTasks(newTasks)
+  }
 
-  const deleteTask = () => { }
+  const deleteTask = (id: string) => {
+    const newTasks = tasks.filter(task => task.id !== id)
+    setTasks(newTasks)
+  }
 
   return (
     <TaskContext.Provider value={{ tasks, createTask, updateTask, deleteTask }}>

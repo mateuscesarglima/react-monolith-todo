@@ -4,9 +4,12 @@ import { TaskItem } from "../../molecules/TaskItem";
 
 type TaskTypeProps = {
   tasks: TaskType[];
+  updateTask: (task: TaskType) => void;
+  deleteTask: (id: string) => void;
 }
 
 export const Task = ({ tasks }: TaskTypeProps) => {
+
   return (
     <section className="w-full max-w-[46rem] m-auto px-2">
       <header className="flex items-center justify-between mt-24 border-b-[1px] border-gray-300 pb-6">

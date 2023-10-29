@@ -12,7 +12,7 @@ export const Home = () => {
   return (
     <section className='flex flex-col h-full'>
       <Header createTask={createTask} />
-      <Task tasks={tasks} />
+      <Task tasks={tasks} deleteTask={deleteTask} updateTask={updateTask} />
     </section>
   );
 }
