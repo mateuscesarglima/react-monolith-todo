@@ -4,8 +4,6 @@ import { TaskItem } from "../../molecules/TaskItem";
 
 type TaskTypeProps = {
   tasks: TaskType[];
-  updateTask: (task: TaskType) => void;
-  deleteTask: (id: string) => void;
 }
 
 export const Task = ({ tasks }: TaskTypeProps) => {

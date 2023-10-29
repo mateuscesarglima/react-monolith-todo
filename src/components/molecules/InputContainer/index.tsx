@@ -2,6 +2,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 import * as zod from 'zod';
+import { useTask } from '../../../hooks/useTask';
 import { Button } from '../../atoms/Button';
 import { Input } from '../../atoms/Input';
 
@@ -11,11 +12,9 @@ const schema = zod.object({
 
 export type InputFormType = zod.infer<typeof schema>
 
-type InputContainerType = {
-  createTask: (task: InputFormType) => void;
-}
 
-export const InputContainer = ({ createTask }: InputContainerType) => {
+export const InputContainer = () => {
+  const { createTask } = useTask()
   const { handleSubmit, control, formState: { errors } } = useForm<InputFormType>({
     resolver: zodResolver(schema),
     defaultValues: {
