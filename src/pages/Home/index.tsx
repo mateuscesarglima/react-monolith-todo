@@ -1,21 +1,17 @@
-import { useState } from 'react';
 import { Header } from '../../components/organisms/Header';
 import { Task } from '../../components/organisms/Tasks';
-import { TaskType } from '../../types';
+import { useTask } from '../../hooks/useTask';
+
 
 
 export const Home = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [tasks, setTasks] = useState<TaskType[]>([{
-    id: crypto.randomUUID(),
-    title: 'Criar um novo projeto',
-    status: 'done'
-  }]);
+  const { tasks, createTask, deleteTask, updateTask } = useTask()
 
 
   return (
     <section className='flex flex-col h-full'>
-      <Header />
+      <Header createTask={createTask} />
       <Task tasks={tasks} />
     </section>
   );

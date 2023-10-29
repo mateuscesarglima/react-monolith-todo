@@ -1,9 +1,11 @@
+import { TaskProvider } from "./contexts/tasks";
 import { Home } from "./pages/Home";
 
 function App() {
-
   return (
-    <Home />
+    <TaskProvider>
+      <Home />
+    </TaskProvider>
   )
 }
 
