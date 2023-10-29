@@ -13,11 +13,11 @@ export const Task = ({ tasks }: TaskTypeProps) => {
       <header className="flex items-center justify-between mt-24 border-b-[1px] border-gray-300 pb-6">
         <div className="flex gap-2">
           <p className="text-blue font-bold">Tarefas criadas</p>
-          <span className="bg-gray-400 w-6 rounded-full flex items-center justify-center text-white font-bold">0</span>
+          <span className="bg-gray-400 w-6 rounded-full flex items-center justify-center text-white font-bold">{tasks.length}</span>
         </div>
         <div className="flex gap-2">
           <p className="text-purple font-bold">Concluídas</p>
-          <span className="bg-gray-400 w-6 rounded-full flex items-center justify-center text-white font-bold">0</span>
+          <span className="bg-gray-400 w-6 rounded-full flex items-center justify-center text-white font-bold">{tasks.filter(task => task.status === 'done').length}</span>
         </div>
       </header>
       <section>
